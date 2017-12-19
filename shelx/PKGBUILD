@@ -1,10 +1,5 @@
-# This is an example PKGBUILD file. Use this as a start to creating your own,
-# and remove these comments. For more information, see 'man PKGBUILD'.
-# NOTE: Please fill out the license field for your package! If it is unknown,
-# then please put 'unknown'.
-
-# Maintainer: Your Name <youremail@domain.com>
-pkgname=shelxl
+# Maintainer: Mixih
+pkgname=shelx
 pkgver=2018.1
 pkgrel=1
 epoch=
@@ -20,12 +15,27 @@ optdepends=()
 provides=()
 conflicts=()
 replaces=()
-source=("shelxl.bz2")
-sha256sums=('d49b5e1004b04fab7479694075f9dd354debbbe1de61f31db307eb5c55fa998a')
+DLAGENTS=("http::/usr/bin/curl -O -u shelx %u")
+source=("http://shelx.uni-goettingen.de/bin/linux64/ciftab.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxc.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxd.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxe.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxl.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxs.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shelxt.bz2"
+        "http://shelx.uni-goettingen.de/bin/linux64/shredcif.bz2")
+sha256sums=('47c4b4349b2534e5d98d499fb92322bfc0ded5c893a7f6c58c58dbcfb84d1b86'
+            '7ab5b569f0417c1292d0001a3ba8362073435764be3b3f8c28782a91ae88df23'
+            'fa7c103c0156ad060e7b66b6f39de8982d660a715a07584d2c1a1853d171d3c0'
+            '2f61f32fe03c1669c3be90f08019bb66ac2e6d2efa62fc20d17ef84eccb0b9cf'
+            'd49b5e1004b04fab7479694075f9dd354debbbe1de61f31db307eb5c55fa998a'
+            '9b180574ee2b828123f622d42e307778d8d4a1f4c32d5741ba065ad2b7751e60'
+            '519c695b8f6c0425f2635dc021be8138ef029761a43d64133a5d736cccc031b8'
+            'eddf6237b70114bab99845c228d5ba6240a2a9e019bf59678f2222e2ddc52cfe')
 validpgpkeys=()
 
 package() {
     mkdir -p $pkgdir/usr/bin
-    chmod +x shelxl
-	cp shelxl $pkgdir/usr/bin/
+    chmod +x ciftab shelxc shelxd shelxe shelxl shelxs shelxt shredcif
+	cp ciftab shelxc shelxd shelxe shelxl shelxs shelxt shredcif $pkgdir/usr/bin/
 }
