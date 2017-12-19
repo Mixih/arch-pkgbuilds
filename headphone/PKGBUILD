@@ -1,0 +1,30 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=init-headphone
+pkgver="0.12"
+pkgrel=1
+license=('GPL')
+pkgdesc="Manage the headphone amplifier found in some Clevo laptops"
+arch=("any")
+url=""
+depends=("python")
+source=("https://github.com/Unrud/init-headphone/archive/v0.12.tar.gz"
+        "package.patch")
+sha256sums=("12c8462ea811706cb282b6074bff3de46252b6b26bdacb53f4c74cbc8b4301a2"
+	        "97e67fce1944bf6087f828588cc3217238bfd60d3dc73882af0fa4933b48a58c")
+build() {
+	cd "$pkgname-$pkgver"
+	patch -p 1 -i $srcdir/package.patch
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	mkdir -p $pkgdir/usr/lib/systemd/system
+	mkdir -p $pkgdir/usr/bin
+	cp src/init-headphone $pkgdir/usr/bin/
+	cp etc/linux-systemd/init-headphone.service $pkgdir/usr/lib/systemd/system/
+}	

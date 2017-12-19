@@ -1,0 +1,36 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=shelxle
+pkgver=1.0.882
+pkgrel=1
+epoch=
+pkgdesc="A cute gui for shellx"
+arch=(x86_64)
+url=""
+license=('GPL')
+groups=()
+depends=(qt4)
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+source=("$pkgname-$pkgver.tar.bz2")
+sha256sums=(d3350e56cfb0c6d62888d1059ec4691ac28a828040502197fe7dd9231fccf05f)
+validpgpkeys=()
+
+build() {
+	cd "$pkgname-$pkgver"
+	qmake-qt4 PREFIX="$pkgdir/" DESTDIR="$pkgdir/"
+	make
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+}

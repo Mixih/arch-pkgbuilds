@@ -1,0 +1,31 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+# Maintainer: Your Name <youremail@domain.com>
+pkgname=shelxl
+pkgver=2018.1
+pkgrel=1
+epoch=
+pkgdesc="Crystal structure refinement program"
+arch=(x86_64)
+url=""
+license=('unknown')
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+source=("shelxl.bz2")
+sha256sums=('d49b5e1004b04fab7479694075f9dd354debbbe1de61f31db307eb5c55fa998a')
+validpgpkeys=()
+
+package() {
+    mkdir -p $pkgdir/usr/bin
+    chmod +x shelxl
+	cp shelxl $pkgdir/usr/bin/
+}

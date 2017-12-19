@@ -1,0 +1,11 @@
+--- a/etc/linux-systemd/init-headphone.service
++++ b/etc/linux-systemd/init-headphone.service
+@@ -6,7 +6,7 @@
+ 
+ [Service]
+ Type=oneshot
+-ExecStart=/usr/local/sbin/init-headphone
++ExecStart=/usr/bin/init-headphone -f
+ 
+ [Install]
+ WantedBy=suspend.target
